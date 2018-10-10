@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Flask for Data Science</title>
+      <!-- Custom styles for this template -->
+      <link  rel="stylesheet" href="{{ url_for('static', filename='css/logo-nav.css') }}">
+
+    <!-- Bootstrap core CSS -->
+    <link  rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="{{ url_for('static', filename='resources/nerdstrom_logo.png')   }}" width="200" height="30" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/cars">Used car</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <h1 class="mt-5">How much is this car?</h1>
+        <p>This model predicts price on a used car market using a GradientBoostingRegressor trained on actual data from the car.som.</p>
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- The web form goes here -->
+                <form action="/predcars" method="post" id="titanic_predict">
+                     <div>
+                        <label for="name">Mileage</label>
+                        <input type="text" id="class" name="predict_mile" value=41050>
+                    </div>
+                    <div>
+                        <label for="name">Model Year: 2000 - 2017 </label>
+                        <input type="text" id="age" name="predict_year" value=2013>
+                    </div>
+                    <div>
+                        <label for="name">Brakes</label>
+                        <input type="text" id="sibsp" name="predict_brake" value=4>
+                    </div>
+                    <div>
+                        <label for="name">Airbag</label>
+                        <input type="text" id="parch" name="predict_airbag" value=6>
+                    </div>
+                    <div>
+                        <label for="name">Camera </label>
+                        <input type="text" id="fare" name="predict_camera" value=0>
+                    </div>
+                    <div>
+                        <label for="name">Control</label>
+                        <input type="text" id="sex" name="predict_control" value=11>
+                    </div>
+                    <div>
+                        <label for="name">Speaker</label>
+                        <input type="text" id="sex" name="predict_speaker" value=1>
+                    </div>
+                    <div>
+                        <label for="name">Video</label>
+                        <input type="text" id="sex" name="predict_video" value=6>
+                    </div>
+                    <div>
+                        <label for="name">Bluetooth</label>
+                        <input type="text" id="sex" name="predict_bluetooth" value=0>
+                    </div>
+                    <div>
+                        <label for="name">Alarm</label>
+                        <input type="text" id="sex" name="predict_alarm" value=1>
+                    </div>
+                    <div>
+                        <label for="name">Navigation</label>
+                        <input type="text" id="sex" name="predict_navigation" value=0>
+                    </div>
+                    <div>
+                        <label for="name">Digital</label>
+                        <input type="text" id="sex" name="predict_digital" value=0>
+                    </div>
+                    <div>
+                        <label for="name">Keyless</label>
+                        <input type="text" id="sex" name="predict_keyless" value=0>
+                    </div>
+                    <div>
+                        <label for="name">Heated</label>
+                        <input type="text" id="sex" name="predict_heated" value=2>
+                    </div>
+                    <div>
+                        <label for="name">Leather</label>
+                        <input type="text" id="sex" name="predict_leather" value=1>
+                    </div>
+                    <div>
+                        <label for="name">Armrest</label>
+                        <input type="text" id="sex" name="predict_armrest" value=0>
+                    </div>
+                    <div>
+                        <label for="name">Total</label>
+                        <input type="text" id="sex" name="predict_total" value=145>
+                    </div>
+                    <div>
+                        <label for="name">Drivetrain</label>
+                        <input type="text" id="sex" name="predict_drivetrain" value=3>
+                    </div>
+                    <div>
+                        <label for="name">Fuel Type</label>
+                        <input type="text" id="sex" name="predict_fueltype" value=3>
+                    </div>
+                    <div>
+                        <label for="name">Transmission</label>
+                        <input type="text" id="sex" name="predict_transmission" value=0>
+                    </div>
+                    <div>
+                        <label for="name">Make</label>
+                        <input type="text" id="sex" name="predict_make" value=50>
+                    </div>
+                    <div>
+                        <label for="name">Model</label>
+                        <input type="text" id="sex" name="predict_model" value=421>
+                    </div>
+                </form>
+            <button class="btn" type="submit" form="titanic_predict" value="Submit">Predict</button>
+            </div>
+
+            <div class="col-lg-6">
+                <!-- Result presentation goes here -->
+                {% if data.prediction %}
+                    <h1>{{data.prediction}}</h1>
+                    <h5>Mileage: {{data.form.predict_mile}}</h5>
+                    <h5>Model Year: {{data.form.predict_year}}</h5>
+                    <h5>Brakes: {{data.form.predict_brake}}</h5>
+                    <h5>Airbag: {{data.predict_airbag}}</h5>
+                    <h5>Camera: {{data.form.predict_camera}}</h5>
+                    <h5>Controls: {{data.form.predict_control}}</h5>
+                    <h5>Speakers: {{data.form.predict_speaker}}</h5>
+                    <h5>Video: {{data.form.predict_video}}</h5>
+                    <h5>Bluetooth: {{data.form.predict_bluetooth}}</h5>
+                    <h5>Alarm: {{data.predict_alarm}}</h5>
+                    <h5>Navigations: ${{data.form.predict_navitation}}</h5>
+                    <h5>Digital: {{data.form.predict_digital}}</h5>
+                    <h5>Keyless: {{data.form.predict_keyless}}</h5>
+                    <h5>Heated: {{data.form.predict_heated}}</h5>
+                    <h5>Leather: {{data.form.predict_leather}}</h5>
+                    <h5>Armrest: {{data.form.predict_armrest}}</h5>
+                    <h5>Drivetrain: {{data.form.predict_drivetrain}}</h5>
+                    <h5>Fuel Type: {{data.form.predict_fueltype}}</h5>
+                    <h5>Transmission: {{data.form.predict_transmission}}</h5>
+                    <h5>Make: {{data.form.predict_make}}</h5>
+                    <h5>Model: {{data.form.predict_model}}</h5>
+                    <h5>Total: {{data.form.predict_total}}</h5>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <img style="margin-top: 50px;" src="https://www.cstatic-images.com/stock/570x380/44/img-2001701284-1526588309444.jpg" height="400px">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/popper/popper.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  </body>
+
+</html>

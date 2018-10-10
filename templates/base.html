@@ -1,0 +1,17 @@
+<html>
+<head>
+	<title>Prdict the runner</title>
+	<body>
+		<h1>Make a prediction!</h1>
+		<form action="/cars" method="POST">
+		Mileage:
+		<input type="text" name="mileage" required>
+		<button type="submit">Submit</button>
+		</form>
+
+	{% if output %}
+	<b>Predicted Class:</b>{{output}}
+	{% endif %}
+	</body>
+</head>
+</html>
