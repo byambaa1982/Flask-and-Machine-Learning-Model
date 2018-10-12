@@ -45,7 +45,7 @@ My model uses the following variables to predict a used car price:
 
 In order to hook up the web interface with the model I had to allow the user to input all of the required model parameters. The easiest way to do this is with a simple web form.
 
-![alt text](/image/input "Logo Title Text 1")
+![alt text](/image/input.png "Logo Title Text 1")
 
 
 ### Conclusion
