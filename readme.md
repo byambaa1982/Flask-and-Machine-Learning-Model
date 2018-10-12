@@ -5,27 +5,47 @@ Shopping for a used vehicle is quite tricky, because there are following questio
 
 ### 2. Project Objective
 
-This project's objective was to build a model and deploy it using Flask python framework that determines if the asking price for a particular car is reasonable given the information provided in the listing. 
+This project's objective was to build a model that determines if the asking price for a particular car is reasonable given the information provided in the listing and deploy ML model using Flask for public as a ML production. 
 
 ### 3. Steps
 
-+ Creating your flask dev environment
-+ Flask App Organization
++ Creating my flask dev environment
++ Organize Flask App
 + Train a model in flask
 + Using a Bootstrap templates to add some style
 + Passing data and predicting with our model
 + Jinja templating with flask
 
-### Data  limitations:
+### Getting prediction inputs into flask
 
-+ Only looked at used cars. According to Ward’s Automotive Yearbook 2013, about 42 million used cars ($380 billion in total revenues) were sold in the U.S. in 2012. By comparison, about 15 million new cars ($300 billion in total revenue) were sold in the U.S. in the same year.
-+ Vehicles located within 75 miles of Chicago, IL, because of local consumers’ preferences.
-Minimum aksing price of $5,000.
-After obtaining and filtering the data, the final dataset contained:
-+ 4,235 unique listings
-+ 54 makes
-+ 485 models
-+ 34 unique years
+My model uses the following variables to predict a used car price:
+ 
+    + Model Year: 
+    + Brakes: 
+    + Airbag: 
+    + Camera: 
+    + Controls: 
+    + Speakers: 
+    + Video: 
+    + Bluetooth: 
+    + Alarm: 
+    + Navigations: 
+    + Digital: 
+    + Keyless: 
+    + Heated: 
+    + Leather: 
+    + Armrest: 
+    + Drivetrain: 
+    + Fuel Type: 
+    + Transmission:
+    + Make: 
+    + Model: 
+    + Total: 
+
+
+In order to hook up the web interface with the model I had to allow the user to input all of the required model parameters. The easiest way to do this is with a simple web form.
+
+![alt text](/images/input "Logo Title Text 1")
 
 
 ### Conclusion
