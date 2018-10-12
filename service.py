@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
+import pickle
 
 app = Flask(__name__)
 
@@ -32,68 +33,8 @@ def twice(x):
 def login(x):
     return 'Hey {} how is your day. {} is great pythonist'.format(x,x)
 
-# ------------------------------------ #
-# -------- DATA SCIENCE TIME --------- #
-# ------------------------------------ #
 
-# if __name__ == '__main__':
-# build a basic model for titanic survival
-titanic_df = pd.read_csv('data/titanic_data.csv')
-titanic_df['sex_binary'] = titanic_df['sex'].map({'female': 1, 'male': 0})
-train_df, test_df = train_test_split(titanic_df)
 
-titanic_df = pd.read_csv('data/titanic_data.csv')
-titanic_df['sex_binary'] = titanic_df['sex'].map({'female': 1, 'male': 0})
-
-# choose our features and create test and train sets
-features = [u'pclass', u'age', u'sibsp', u'parch', u'fare', u'sex_binary', 'survived']
-train_df, test_df = train_test_split(titanic_df)
-train_df = train_df[features].dropna()
-test_df = test_df[features].dropna()
-
-features.remove('survived')
-X_train = train_df[features]
-y_train = train_df['survived']
-X_test = test_df[features]
-y_test = test_df['survived']
-
-# fit the model
-L1_logistic = LogisticRegression(C=1.0, penalty='l1')
-L1_logistic.fit(X_train, y_train)
-
-# check the performance
-target_names = ['Died', 'Survived']
-y_pred = L1_logistic.predict(X_test)
-print(classification_report(y_test, y_pred, target_names=target_names))
-
-# start the app
-app.run(debug=True)
-@app.route('/titanic', methods=['GET', 'POST'])
-def titanic():
-    data = {} 
-    if request.form:
-        # get the form data
-        form_data = request.form
-        data['form'] = form_data
-        predict_class = float(form_data['predict_class'])
-        predict_age = float(form_data['predict_age'])
-        predict_sibsp = float(form_data['predict_sibsp'])
-        predict_parch = float(form_data['predict_parch'])
-        predict_fare = float(form_data['predict_fare'])
-        predict_sex = form_data['predict_sex']
-        
-        # convert the sex from text to binary
-        if predict_sex == 'M':
-            sex = 0
-        else:
-            sex = 1
-        input_data = np.array([predict_class, predict_age, predict_sibsp, predict_parch, predict_fare, sex])
-        
-        # get prediction
-        prediction = L1_logistic.predict_proba(input_data.reshape(1, -1))
-        prediction = prediction[0][1] # probability of survival
-        data['prediction'] = 'Approximate price is {:.1f}%'.format(prediction * 100)
-    return render_template('titanic.html', data=data)
 
 # ------------------------------------ #
 # -------- Machine Learning on a Used Car market --------- #
@@ -116,6 +57,9 @@ gbr.score(X_test, np.log(y_test))
 y_pred=gbr.predict(X_test)
 y_pred=np.exp(y_pred)
 
+# ------------Pickle my model to use later------------#
+pickle.dump(gbr, open("model.pkl", "wb"))
+
 app.run(debug=True)
 @app.route('/cars', methods=['GET', 'POST'])
 def cars():
@@ -125,6 +69,21 @@ def cars():
         output=y_pred[4]
 
     return render_template('base.html', output=output)
+
+# -------- Print score of my model --------- #
+
+app.run(debug=True)
+@app.route('/scores')
+def scores():
+    load_model=pickle.load(open("model.pkl", "rb"))
+    result=load_model.score(X_train, np.log(y_train))
+    test_score=load_model.score(X_test, np.log(y_test))
+    return render_template('score.html', output=result, test_score=test_score)
+@app.route('/_get_current_user')
+def get_current_user():
+    return jsonify(username=g.user.username,
+                   email=g.user.email,
+                   id=g.user.id)
 app.run(debug=True)
 @app.route('/predcars', methods=['GET', 'POST'])
 def predcars():
