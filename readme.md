@@ -46,7 +46,7 @@ My model uses the following variables to predict a used car price:
 In order to hook up the web interface with the model I had to allow the user to input all of the required model parameters. The easiest way to do this is with a simple web form.
 
 ![alt text](/image/input.png "Logo Title Text 1")
-
+![alt text](/image/input_2.png "Logo Title Text 1")
 
 ### Conclusion
 + My scraped data was very messy and missing many entries, especially exterior color, interior color and plant country. I had to drop these, even though those are very important features.  While the details provided in the downloaded listings are quite comprehensive, I was only able to include a small number of the features. And some features, especially text feature, were very unreliable. Many of the them had multiple variations of the same name, or different names with the same meaning, such as 'radio!, fm/am radio, radio!!!'. I was not able to develop a code capable of cleaning up the discrepancies between the various names, and I suspect this had a negative impact on the regression. 
