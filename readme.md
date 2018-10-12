@@ -13,39 +13,39 @@ This project's objective was to build a model that determines if the asking pric
 + Organize Flask App
 + Train a model in flask
 + Using a Bootstrap templates to add some style
-+ Passing data and predicting with our model
++ Passing data and predicting with my model
 + Jinja templating with flask
 
 ### Getting prediction inputs into flask
 
 My model uses the following variables to predict a used car price:
  
-    + Model Year: 
-    + Brakes: 
-    + Airbag: 
-    + Camera: 
-    + Controls: 
-    + Speakers: 
-    + Video: 
-    + Bluetooth: 
-    + Alarm: 
-    + Navigations: 
-    + Digital: 
-    + Keyless: 
-    + Heated: 
-    + Leather: 
-    + Armrest: 
-    + Drivetrain: 
-    + Fuel Type: 
-    + Transmission:
-    + Make: 
-    + Model: 
-    + Total: 
++ Model Year: 
++ Brakes: 
++ Airbag: 
++ Camera: 
++ Controls: 
++ Speakers: 
++ Video: 
++ Bluetooth: 
++ Alarm: 
++ Navigations: 
++ Digital: 
++ Keyless: 
++ Heated: 
++ Leather: 
++ Armrest: 
++ Drivetrain: 
++ Fuel Type: 
++ Transmission:
++ Make: 
++ Model: 
++ Total: 
 
 
 In order to hook up the web interface with the model I had to allow the user to input all of the required model parameters. The easiest way to do this is with a simple web form.
 
-![alt text](/images/input "Logo Title Text 1")
+![alt text](/image/input "Logo Title Text 1")
 
 
 ### Conclusion
